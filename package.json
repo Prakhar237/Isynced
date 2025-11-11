@@ -1,0 +1,22 @@
+{
+  "name": "isynced",
+  "version": "1.0.0",
+  "description": "isynced.com - Premium Domain Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "deploy": "wrangler pages deploy .",
+    "preview": "wrangler pages dev .",
+    "start": "wrangler pages dev ."
+  },
+  "keywords": [
+    "domain",
+    "landing-page",
+    "cloudflare-pages"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
+

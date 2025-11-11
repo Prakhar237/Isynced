@@ -11,10 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="standalone-styles.css" as="style">
     <link rel="stylesheet" href="standalone-styles.css">
+    
+    <!-- Lucide Icons CDN - Load after page content -->
+    <link rel="preconnect" href="https://unpkg.com">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 <body>
     <div class="container">
@@ -319,11 +322,20 @@
     </div>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Initialize Lucide icons after DOM and script are ready
+        function initLucideIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            } else {
+                // Retry if lucide hasn't loaded yet
+                setTimeout(initLucideIcons, 100);
+            }
+        }
         
         // Domain Stats Toggle Functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize icons when DOM is ready
+            initLucideIcons();
             const viewStatsBtn = document.getElementById('viewStatsBtn');
             const statsSection = document.getElementById('statsSection');
             let isStatsVisible = false;
