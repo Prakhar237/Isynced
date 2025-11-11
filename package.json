@@ -4,7 +4,7 @@
   "description": "isynced.com - Premium Domain Landing Page",
   "main": "index.html",
   "scripts": {
-    "deploy": "wrangler pages deploy .",
+    "deploy": "wrangler pages deploy . --project-name=isynced",
     "preview": "wrangler pages dev .",
     "start": "wrangler pages dev ."
   },
